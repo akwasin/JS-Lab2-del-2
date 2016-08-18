@@ -1,0 +1,36 @@
+﻿.wrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.employeesClass, .carsClass {
+    border: 1px solid #cccccc;
+    display: inline-block;
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    vertical-align: top;
+    overflow-y: auto;
+}
+
+    .employeesClass h3, .carsClass h3 {
+        text-align: center;
+        color: #cccccc;
+        font-family: 'Lato', sans-serif;
+        display: none;
+    }
+
+#EmployeeList, #CarsList {
+    font-family: 'Lato', sans-serif;
+    text-align: justify;
+    padding-left: 135px;
+}
+
+#showCars, #showEmployees {
+    margin: 0 auto;
+    display: block;
+    background-color: #ffffff;
+    color: #000000;
+    width: 300px;
+    padding: 15px;
+}
