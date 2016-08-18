@@ -8,7 +8,13 @@ Company.Car = Company.Car || {
     Cars: new Array()
 }
 
-Company.Employee.Employees.push("AJ", "Erik", "Peter", "Bjorn");
+
+Company.Employee.Employees.push(
+    {Name: "AJ", HasCar: true},
+    {Name: "Erik", HasCar: true },
+    {Name: "Peter", HasCar: false },
+    {Name: "Bjorn", HasCar: true}
+);
 Company.Car.Cars.push("Volvo", "Nissan", "BMW", "Ford");
 
 function writeCars() {
@@ -31,7 +37,7 @@ function writeEmployees() {
     var ulEmployees = document.getElementById("EmployeeList");
     ulEmployees.innerHTML = "";
     for (var i = 0; i < Company.Employee.Employees.length; i++) {
-        ulEmployees.innerHTML += "<li>" + Company.Employee.Employees[i] + "</li>";
+        ulEmployees.innerHTML += "<li>" + Company.Employee.Employees[i].Name + "</li>";
     }
     $("#showEmployees").val("Hide Employees");
     $("#showEmployees").click(hideEmployees);
