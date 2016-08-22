@@ -8,12 +8,11 @@ Company.Car = Company.Car || {
     Cars: new Array()
 }
 
-
 Company.Employee.Employees.push(
-    {Name: "AJ", HasCar: true},
-    {Name: "Erik", HasCar: true },
-    {Name: "Peter", HasCar: false },
-    {Name: "Bjorn", HasCar: true}
+    { Name: "AJ", HasCar: true },
+    { Name: "Erik", HasCar: true },
+    { Name: "Peter", HasCar: false },
+    { Name: "Bjorn", HasCar: true }
 );
 Company.Car.Cars.push("Volvo", "Nissan", "BMW", "Ford");
 
@@ -52,4 +51,38 @@ function hideEmployees() {
 
 $("#showCars").click(writeCars);
 $("#showEmployees").click(writeEmployees);
+$("#showHasCars").click(listEmployeesWithCars);
+$("#showHasNoCars").click(listEmployeesWithCars);
+
 // +1 till Peter Trullenque
+
+function hasCar(employee) {
+    var dfd = $.Deferred();
+    if (employee.HasCar === true) {
+        dfd.resolve(employee);
+    } else {
+        dfd.reject(employee);
+    }
+    return dfd.promise();
+}
+
+function listEmployeesWithCars() {
+    var employees = Company.Employee.Employees;
+    employees.forEach(function(item) {
+        hasCar(item).then(
+            onSuccess
+            ,
+            function(message) {
+                onFailure(message);
+            }
+        );
+    });
+}
+
+function onSuccess(item) {
+    document.getElementById("EmployeesCarList").innerHTML += "<li>" + item.Name + "  has a car" + "</li>";
+}
+
+function onFailure(item) {
+    document.getElementById("EmployeesNoCarList").innerHTML += "<li>" + item.Name + " has no car" + "</li>";
+}
